@@ -66,6 +66,6 @@ app.post('/api/movies', (req, res) => {
 	res.status(201).json(movies);
 });
 
-app.listen(5001, () => {
-	console.log('Server listening on port 5001');
+app.listen(3000, () => {
+	console.log('Server listening on port 3001');
 });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import MovieCard from "./MovieCard";
 
 import { useParams } from 'react-router-dom';
 
@@ -11,11 +12,11 @@ export default function Movie(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5001/api/movies/${id}`) // Study this endpoint with Postman
+      .get(`http://localhost:3000/api/movies/${id}`) // Study this endpoint with Postman
       .then(response => {
         // Study this response with a breakpoint or log statements
         // and set the response data as the 'movie' slice of state
-        console.log(response);
+        console.log(response.data);
         setMovie(response.data);
       })
       .catch(error => {
@@ -25,8 +26,9 @@ export default function Movie(props) {
     // the `id` changes... How could we do this?
   }, []);
 
-  // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = evt => { }
+  const saveMovie = evt => {
+
+  }
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -48,11 +50,18 @@ export default function Movie(props) {
 
         {stars.map(star => (
           <div key={star} className="movie-star">
-            {star}
+            {!stars ? null: 'nada'}
           </div>
         ))}
       </div>
-      <div className="save-button">Save</div>
+      <div onClick={saveMovie} className="save-button">Save</div>
     </div>
   );
 }
+
+      // <div>
+      //   <WarningBanner warn={this.state.showWarning} />
+      //   <button onClick={this.handleToggleClick}>
+      //     {this.state.showWarning ? 'Hide' : 'Show'}
+      //   </button>
+      // </div>
